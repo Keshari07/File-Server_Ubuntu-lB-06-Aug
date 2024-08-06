@@ -1,0 +1,177 @@
+import { useEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Loader from './common/Loader';
+import PageTitle from './components/PageTitle';
+import Analytics from './pages/Dashboard/Analytics';
+import List from './pages/Approval/List';
+import Account from './pages/Other/Account';
+import Security from './pages/Other/Security';
+import Notification from './pages/Other/Notification';
+import Request from './pages/Approval/Request';
+import Centerlist from './pages/Center/Centerlist';
+import InvoiceComponent from './pages/Bill/InvoiceComponent';
+import Profile from './pages/profile';
+import Setting from './pages/setting';
+import Alerts from './pages/UiElements/Alerts';
+import Buttons from './pages/UiElements/Buttons';
+import Login from './pages/login';
+import Helpcenters from './pages/Other/Helpcenters';
+
+function App() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <>
+        <Routes>
+          <Route
+          path="/"
+          element={
+            <>
+              <PageTitle title="Analytics" />
+              <Analytics />
+            </>
+          }
+        />
+        {/* <Route
+          path="/pages/Dashboard/Analytics"
+          element={
+            <>
+              <PageTitle title="Analytics" />
+              <Analytics />
+            </>
+          }
+        /> */}
+        <Route
+          path="/profile"
+          element={
+            <>
+              <PageTitle title="Profile" />
+              <Profile />
+            </>
+          }
+        />
+        <Route
+          path="/ui/alerts"
+          element={
+            <>
+              <PageTitle title="Alerts" />
+              <Alerts />
+            </>
+          }
+        />
+        <Route
+          path="/ui/buttons"
+          element={
+            <>
+              <PageTitle title="Buttons" />
+              <Buttons />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Approval/List"
+          element={
+            <>
+              <PageTitle title="List" />
+              <List />
+            </>
+          }
+        />
+        <Route
+          path="/Bill/InvoiceComponent"
+          element={
+            <>
+              <PageTitle title="Order" />
+              <InvoiceComponent />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Center/Centerlist"
+          element={
+            <>
+              <PageTitle title="Center" />
+              <Centerlist />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Other/Helpcenters"
+          element={
+            <>
+              <PageTitle title="Helpcentres" />
+              <Helpcenters />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Approval/Request"
+          element={
+            <>
+              <PageTitle title="Request" />
+              <Request />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Account"
+          element={
+            <>
+              <PageTitle title="Account" />
+              <Account />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Notification"
+          element={
+            <>
+              <PageTitle title="Notification" />
+              <Notification />
+            </>
+          }
+        />
+        <Route
+          path="/pages/Other/Security"
+          element={
+            <>
+              <PageTitle title="Security" />
+              {/* <Security/> */}
+            </>
+          }
+        />
+        <Route
+          path="/pages/setting"
+          element={
+            <>
+              <PageTitle title="Setting" />
+              <Setting />
+            </>
+          }
+        />
+        <Route
+          path="/pages/login"
+          element={
+            <>
+              <PageTitle title="Login" />
+              <Login />
+            </>
+          }
+        />
+      </Routes>
+    </>
+  );
+}
+
+export default App;
